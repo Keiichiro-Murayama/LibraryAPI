@@ -52,28 +52,40 @@ public class AuthenticateController : ControllerBase
             var user = await _usecase.AuthenticateAsync(model.Username, model.Password);
             // JWTトークンを発行する
             var token = _provider.IssueAccessToken(user);
-            // 発行したトークンをレスポンスボディで返す
+
+            // Cookieオプションを生成する
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true, // HttpOnlyを有効にする
+                Secure = true, // HTTPS通信でのみ送信する
+                SameSite = SameSiteMode.None, // クロスサイト送信を許可する
+                Path = "/", // ルート配下すべてに適用
+                            // Cookieの有効期限を設定60分にする
+                Expires = DateTimeOffset.UtcNow.AddMinutes(60)
+            };
+            // CookieにJWTトークンを追加する
+            Response.Cookies.Append("AccessToken", token, cookieOptions);
             return Ok(new TokenResponse { Token = token });
         }
         catch (AuthenticationException ex)
         {
-            // 認証失敗
             return Unauthorized(new { message = ex.Message });
         }
     }
 
-    /// <summary>
-    /// ログアウト(ステートレス: バックエンド側では何もせず204返却)
-    /// </summary>
-    /// <returns>常に204 No Content</returns>
-    [Authorize]
-    [HttpPost("logout")]
-    [SwaggerOperation(
-        Summary = "ユーザーのログアウト",
-        Description = "JWTはステートレスなため、バックエンド側で無効化処理は行いません。クライアント側でトークンを破棄してください。")]
-    [SwaggerResponse(StatusCodes.Status204NoContent, "ログアウト成功（処理なし）")]
     public IActionResult Logout()
     {
+        // Cookie削除時も、発行時と同じオプションを指定する必要がある
+        var deleteOptions = new CookieOptions
+        {
+            HttpOnly = true,  // JSから参照不可(発行時と同じ)
+            Secure = true,  // HTTPS通信のみ(発行時と同じ)
+            SameSite = SameSiteMode.None, // クロスサイト送信を許可(発行時と同じ)
+            Path = "/", // ルート配下すべてに適用(発行時と同じ)
+            Expires = DateTimeOffset.UnixEpoch  // 期限を過去日時に設定して無効化
+        };
+        // CookieからJWTトークンを削除する
+        Response.Cookies.Delete("AccessToken", deleteOptions);
         return NoContent();
     }
 }
