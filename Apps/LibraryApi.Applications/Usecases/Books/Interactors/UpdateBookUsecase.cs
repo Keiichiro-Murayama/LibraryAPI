@@ -29,13 +29,13 @@ public class UpdateBookUsecase : IUpdateBookUsecase
     /// <param name="bookName">図書目</param>
     /// <returns>なし</returns>
     /// <exception cref="ExistsException">同一図書名が存在する場合にスローされる</exception>
-    public async Task ExistsByBookNameAsync(string bookId)
+    public async Task ExistsByBookNameAsync(string id)
     {
         // 指定された図書の有無を調べる
-        var result = await _bookRepository.ExistsByNameAsync(bookId);
+        var result = await _bookRepository.ExistsByIdAsync(id);
         if (result is false) // 図書が既に存在する
         {
-            throw new ExistsException($"図書名:{bookId}は存在しません。");
+            throw new ExistsException($"図書名:{id}は存在しません。");
         }
     }
 

@@ -98,8 +98,8 @@ public class UpdateBookControllerTests
         var viewModel = new UpdateBookRequestViewModel
         {
             Title = "リーダブルコード",
-            Author = "Dustin Doswell",
-            Stock = 3
+            Author = "Dustin Boswell",
+            Stock = 5
         };
         var response = await _controller!.Updated(viewModel, Uuid);
         var ok = response as OkObjectResult;
@@ -147,7 +147,7 @@ public class UpdateBookControllerTests
 [TestMethod("更新在庫がマイナスで400BadRequestを返す")]
     public async Task Update_NegativeStock_Return400BadRequest()
     {
-        var uuid = "94399b5c-7223-48c1-aab3-ea62378bdc13";
+        var uuid = "a5fd08bc-5f56-441e-a315-edb8a1e02053";
         var viewModel = new UpdateBookRequestViewModel
         {
             Title = "セーラームーン",

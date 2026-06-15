@@ -104,7 +104,8 @@ public class RegisterUserUsecaseTests
     [TestMethod("有効なユーザを登録できる")]
     public async Task RegisterUserAsync_ShouldRegister_WhenValidUser()
     {
-        var user = new User("Collect6", "CollectPass");
+        string name = Guid.NewGuid().ToString("n").Substring(0, 10);
+        var user = new User(name, "CollectPass");
         try
         {
             //登録実行

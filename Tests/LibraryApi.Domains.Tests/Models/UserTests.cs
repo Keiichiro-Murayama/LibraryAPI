@@ -110,8 +110,8 @@ public class UserTests
     public void ChangePassword_WithValidValue_ShouldSucceed()
     {
         var user = new User(ValidUsername, ValidPasswordHash);
-        user.ChangePassword("newpwd");
-        Assert.AreEqual("newpwd", user.Password);
+        user.ChangePassword("newpwddd");
+        Assert.AreEqual("newpwddd", user.Password);
     }
 
     [TestMethod("空白のパスワードに変更すると例外")]
@@ -127,16 +127,16 @@ public class UserTests
     public void Equals_WithSameUuid_ShouldReturnTrue()
     {
         var uuid = Guid.NewGuid().ToString();
-        var u1 = new User(uuid, "A", "p1");
-        var u2 = new User(uuid, "B", "p2");
+        var u1 = new User(uuid, "A", "password11");
+        var u2 = new User(uuid, "B", "password22");
         Assert.IsTrue(u1.Equals(u2));
     }
     
     [TestMethod("異なるUUIDで非等価と判定される")]
     public void Equals_WithDifferentUuid_ShouldReturnFalse()
     {
-        var u1 = new User("A", "p1");
-        var u2 = new User("B", "p2");
+        var u1 = new User("A", "password11");
+        var u2 = new User("B", "password22");
         Assert.IsFalse(u1.Equals(u2));
     }
 }

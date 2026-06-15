@@ -8,13 +8,13 @@ using LibraryApi.Presentations.Configs;
 using LibraryApi.Presentations.Controllers;
 using LibraryApi.Presentations.ViewModels;
 using Microsoft.AspNetCore.Http.HttpResults;
-namespace LibraryApi.Presentation.Tests.Controllers;
+namespace LibraryApi.Presentations.Tests.Controllers;
 /// <summary>
 /// ユースケース:[商品を変更する]を実現するコントローラのテストドライバ
 /// </summary>
 [TestClass]
 [TestCategory("Controllers")]
-public class UpdateBookControllerTests
+public class SearchBookByKeywordControllerTests
 {
     // MSTestテスト用ログ出力ハンドル
     private static TestContext? _testContext;

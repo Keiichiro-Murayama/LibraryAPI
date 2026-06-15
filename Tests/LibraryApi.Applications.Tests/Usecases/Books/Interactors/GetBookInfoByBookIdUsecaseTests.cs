@@ -89,11 +89,11 @@ public class GetBookInfoByBookIdUsecaseTests
         // 商品名を検証する
         Assert.AreEqual("リーダブルコード", result.Title);
         // 著者を検証する
-        Assert.AreEqual("Dustin Doswell", result.Author);
+        Assert.AreEqual("Dustin Boswell", result.Author);
         //在庫Idを検証する
         Assert.AreEqual("d1a3c77a-b148-4162-8dde-e5229f26cd48",result.Stock!.StockUuid);
         // 在庫数を検証する
-        Assert.AreEqual(3, result.Stock!.Stock);
+        Assert.AreEqual(5, result.Stock!.Stock);
         // 商品カテゴリIdを検証する
         Assert.AreEqual(
         "18836923-5194-47f1-bf4c-e09eb5fa8fef", result.Category!.CategoryUuid);

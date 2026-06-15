@@ -111,7 +111,7 @@ public class UserRepositoryTests
     [TestMethod("ユーザー名またはメールが存在するとtrueが返る")]
     public async Task ExistsByUsernameOrEmailAsync_WhenExists_ShouldReturnTrue()
     {
-        var user = new User("hanako_user","pwdhash");
+        var user = new User("hanako_user","pwdhash11");
 
         var strategy = _dbContext!.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
@@ -124,9 +124,7 @@ public class UserRepositoryTests
                 // ユーザー名でヒット
                 var byName = await _userRepository.ExistsByUsernameAsync("hanako_user");
                 Assert.IsTrue(byName);
-                // メールでヒット
-                var byEmail = await _userRepository.ExistsByUsernameAsync("no-hit");
-                Assert.IsTrue(byEmail);
+
             }
             finally
             {
@@ -145,9 +143,10 @@ public class UserRepositoryTests
     }
 
     [TestMethod("ユーザー名またはメールからユーザーを取得できる（ユーザー名）")]
-    public async Task SelectByUsernameOrEmailAsync_ByUsername_ShouldReturnUser()
+    public async Task SelectByUsernameAsync_ByUsername_ShouldReturnUser()
     {
-        var u = new User("jiro_user", "hash");
+        string name = Guid.NewGuid().ToString("n").Substring(0, 10);
+        var u = new User(name, "hash1234");
 
         var strategy = _dbContext!.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
@@ -157,39 +156,11 @@ public class UserRepositoryTests
             {
                 await _userRepository.CreateAsync(u);
 
-                var result = await _userRepository.SelectByUsernameAsync("jiro_user");
+                var result = await _userRepository.SelectByUsernameAsync(name);
                 Assert.IsNotNull(result);
                 Assert.AreEqual(u.UserUuid, result!.UserUuid);
-                Assert.AreEqual("jiro_user", result.Username);
-                Assert.AreEqual("hash", result.Password);
-            }
-            finally
-            {
-                await tx.RollbackAsync();
-                tx.Dispose();
-                _testContext!.WriteLine("トランザクションをロールバックしました。");
-            }
-        });
-    }
-
-    [TestMethod("ユーザー名またはメールからユーザーを取得できる（メール）")]
-    public async Task SelectByUsernameOrEmailAsync_ByEmail_ShouldReturnUser()
-    {
-        var u = new User("sabo_user", "hash2");
-
-        var strategy = _dbContext!.Database.CreateExecutionStrategy();
-        await strategy.ExecuteAsync(async () =>
-        {
-            await using var tx = await _dbContext!.Database.BeginTransactionAsync();
-            try
-            {
-                await _userRepository.CreateAsync(u);
-
-                var result = await _userRepository.SelectByUsernameAsync("sabo_user");
-                Assert.IsNotNull(result);
-                Assert.AreEqual(u.UserUuid, result!.UserUuid);
-                Assert.AreEqual("sabo_user", result.Username);
-                Assert.AreEqual("hash2", result.Password);
+                Assert.AreEqual(name, result.Username);
+                Assert.AreEqual("hash1234", result.Password);
             }
             finally
             {
@@ -216,7 +187,8 @@ public class UserRepositoryTests
     [TestMethod("ユーザーIdでユーザーを取得できる")]
     public async Task SelectByIdAsync_WhenExists_ShouldReturnUser()
     {
-        var u = new User("nick_user", "hash4");
+        string name = Guid.NewGuid().ToString("n").Substring(0, 10);
+        var u = new User(name, "hash1234");
 
         var strategy = _dbContext!.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
@@ -229,8 +201,8 @@ public class UserRepositoryTests
                 var result = await _userRepository.SelectByIdAsync(u.UserUuid);
                 Assert.IsNotNull(result);
                 Assert.AreEqual(u.UserUuid, result!.UserUuid);
-                Assert.AreEqual("nick_user", result.Username);
-                Assert.AreEqual("hash4", result.Password);
+                Assert.AreEqual(name, result.Username);
+                Assert.AreEqual("hash1234", result.Password);
             }
             finally
             {

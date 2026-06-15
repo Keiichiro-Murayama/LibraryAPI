@@ -80,7 +80,7 @@ public class UpdateBookUsecaseTests
     [TestMethod("存在する商品名を指定すると例外はスローされない")]
     public async Task ExistsByBookNameAsync_ShouldNotThrow_WhenNameExists()
     {
-        await _usecase!.ExistsByBookNameAsync("94399b5c-7223-48c1-aab3-ea62378bdc13");
+        await _usecase!.ExistsByBookNameAsync("リーダブルコード");
         Assert.IsTrue(true);
     }
     [TestMethod("存在しない商品名を指定するとExistsExceptionがスローされる")]

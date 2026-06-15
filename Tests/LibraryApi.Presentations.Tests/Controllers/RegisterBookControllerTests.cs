@@ -150,12 +150,14 @@ public class RegisterBookControllerTests
     [TestMethod("商品が重複して登録される：409Conflict")]
     public async Task RegisterBookAsync_DuplicateTitle_Return409Conflict()
     {
+        string title = Guid.NewGuid().ToString("n").Substring(0, 5);
+        string author = Guid.NewGuid().ToString("n").Substring(0, 5);
         // 1回目の登録（確実に重複させるために、まずは普通に登録するか、
         // または Usecase の ExistsByBookNameAsync が ExistsException を投げる状態を作る）
         var data = new RegisterBookRequestViewModel
         {
-            Title = "重複するタイトル",
-            Author = "武内直子",
+            Title = title,
+            Author = author,
             Stock = 5,
             CategoryId = "18836923-5194-47f1-bf4c-e09eb5fa8fef"
         };
@@ -166,11 +168,10 @@ public class RegisterBookControllerTests
         // 2回目の登録（同じタイトル）
         var response = await _controller.Register(data);
 
+        Console.WriteLine($"#####################  Response type: {response?.GetType().Name}##############");
         var conflictResult = response as ConflictObjectResult;
         Assert.IsNotNull(conflictResult);
         Assert.AreEqual(StatusCodes.Status409Conflict, conflictResult.StatusCode);
-
-
     }
 
     [TestMethod("存在しない図書カテゴリIdを受信した：400BadRequest")]

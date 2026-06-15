@@ -14,6 +14,7 @@ public interface IBookRepository
     Task<Book?> UpdateByIdAsync(Book book);
     Task<bool> DeleteByIdAsync(string id);
     Task<bool> ExistsByNameAsync(string name);
+    Task<bool> ExistsByIdAsync(string id);
     Task<Book> SelectByNameWithIdAsync(string name);
 
 }

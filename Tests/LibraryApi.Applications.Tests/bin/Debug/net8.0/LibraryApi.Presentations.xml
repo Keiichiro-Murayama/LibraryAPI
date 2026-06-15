@@ -101,6 +101,31 @@
             <param name="config">構成情報</param>
             <returns>IServiceCollection(チェーン可能)</returns>
         </member>
+        <member name="T:LibraryApi.Presentations.Controllers.AuthenticateController">
+            <summary>
+            ユースケース:[ログイン/ログアウト]を実現するコントローラ
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.AuthenticateController.#ctor(LibraryApi.Applications.Usecases.Authenticate.Interfaces.IAuthenticateUserUsecase,LibraryApi.Applications.Security.IJwtTokenProvider)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="usecase">ユースケース:[ログインする]を実現するインターフェイス</param>
+            <param name="provider">JWTの発行・検証インターフェイス</param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.AuthenticateController.Login(LibraryApi.Presentations.ViewModels.LoginViewModel)">
+            <summary>
+            ログイン認証し、成功したらJWTトークンを返す
+            </summary>
+            <param name="model">ログイン情報ViewModel</param>
+            <returns>認証成功時はJWTトークン、失敗時は401</returns>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.AuthenticateController.Logout">
+            <summary>
+            ログアウト(ステートレス: バックエンド側では何もせず204返却)
+            </summary>
+            <returns>常に204 No Content</returns>
+        </member>
         <member name="T:LibraryApi.Presentations.Controllers.DeleteBookController">
             <summary>
             ユースケース:[図書を削除する]を実現するコントローラ
@@ -202,6 +227,11 @@
             <param name="bookId">変更対象の図書Id(UUID)</param>
             <returns></returns>
         </member>
+        <member name="T:LibraryApi.Presentations.ViewModels.LoginViewModel">
+            <summary>
+            ユースケース:[新商品を登録する]を実現するViewModel
+            </summary>
+        </member>
         <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookRequestViewModel">
             <summary>
             ユースケース:[新商品を登録する]を実現するViewModel
@@ -210,6 +240,16 @@
         <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookViewModel">
             <summary>
             ユースケース:[新商品を登録する]を実現するViewModel
+            </summary>
+        </member>
+        <member name="T:LibraryApi.Presentations.ViewModels.TokenResponse">
+            <summary>
+            JWTトークンをクライアントに返すためのレスポンスモデル
+            </summary>
+        </member>
+        <member name="P:LibraryApi.Presentations.ViewModels.TokenResponse.Token">
+            <summary>
+            JWTトークン文字列
             </summary>
         </member>
     </members>

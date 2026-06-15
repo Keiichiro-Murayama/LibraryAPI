@@ -85,19 +85,20 @@ public class AuthenticateUserUsecaseTests
     public async Task AuthenticateAsync_ShouldReturnUser_WhenUsernameAndPasswordAreCorrect()
     {
         // ユーザーを生成する
+        string name = Guid.NewGuid().ToString("n").Substring(0, 10);
         var password = _service!.Hash("P@ssw0rd123!");
-        var user = new User("jiro", password);
+        var user = new User(name, password);
 
             // ユーザーを登録する
             await _repository!.CreateAsync(user);
             // 認証処理をする
-            var authed = await _usecase!.AuthenticateAsync("jiro", "P@ssw0rd123!");
+            var authed = await _usecase!.AuthenticateAsync(name, "P@ssw0rd123!");
             // nullでないことを検証する
             Assert.IsNotNull(authed);
             // ユーザーIdを検証する
             Assert.AreEqual(user.UserUuid, authed.UserUuid);
             // ユーザー名を検証する
-            Assert.AreEqual("jiro", authed.Username);
+            Assert.AreEqual(name, authed.Username);
 
         
     }

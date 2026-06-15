@@ -102,7 +102,7 @@ public class GetBookInfoByBookIdControllerTest
         // 図書名を検証する（※コメントを「商品名」から「図書名」に変更しています）
         Assert.AreEqual("リーダブルコード", result.Title);
         // 著者を検証する
-        Assert.AreEqual("Dustin Doswell", result.Author);
+        Assert.AreEqual("Dustin Boswell", result.Author);
 
         // 在庫Idを検証する
         Assert.IsNotNull(result.Stock, "Stockがnullです。");
