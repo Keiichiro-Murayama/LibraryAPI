@@ -114,3 +114,11 @@
 /Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Presentations/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
 /Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Presentations/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
 /Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Presentations/bin/Debug/net8.0/appsettings.json
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/appsettings_origin.json
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/Microsoft.Extensions.ObjectPool.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/Microsoft.Extensions.WebEncoders.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
+/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Presentations/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll

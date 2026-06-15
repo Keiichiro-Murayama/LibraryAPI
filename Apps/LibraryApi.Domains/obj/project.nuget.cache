@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YT+TUZ3BZj8=",
+  "dgSpecHash": "FlFr6fqJDj4=",
   "success": true,
-  "projectFilePath": "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
+  "projectFilePath": "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

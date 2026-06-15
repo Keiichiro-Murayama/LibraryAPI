@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LibraryApi.Applications
-build_property.ProjectDir = /Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Applications/
+build_property.ProjectDir = /home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Applications/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

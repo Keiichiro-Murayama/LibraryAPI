@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj": {}
+    "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj": {}
   },
   "projects": {
-    "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj": {
+    "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
+        "projectUniqueName": "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
         "projectName": "LibraryApi.Domains",
-        "projectPath": "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
-        "packagesPath": "/Users/k16/.nuget/packages/",
-        "outputPath": "/Users/k16/works/fullness-training/LibraryAPI/Apps/LibraryApi.Domains/obj/",
+        "projectPath": "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/LibraryApi.Domains.csproj",
+        "packagesPath": "/home/fullness/.nuget/packages/",
+        "outputPath": "/home/fullness/CS_Training/LibraryApi/Apps/LibraryApi.Domains/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/k16/.nuget/NuGet/NuGet.Config"
+          "/home/fullness/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.421/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/fullness/.dotnet/sdk/8.0.420/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
