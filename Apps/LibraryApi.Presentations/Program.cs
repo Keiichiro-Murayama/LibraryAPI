@@ -63,8 +63,8 @@ app.Run();
 // Cookieから認証トークンを抽出するミドルウェア
 app.Use(async (context, next) =>
 {
-    // Cookieに"jwt"という名前でトークンが保存されている場合
-    if (context.Request.Cookies.TryGetValue("jwt", out var token))
+    // Cookieに"AccessToken"という名前でトークンが保存されている場合
+    if (context.Request.Cookies.TryGetValue("AccessToken", out var token))
     {
         // Authorizationヘッダとして設定
         context.Request.Headers.Authorization = $"Bearer {token}";
