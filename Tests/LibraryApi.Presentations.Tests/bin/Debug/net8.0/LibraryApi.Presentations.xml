@@ -70,6 +70,21 @@
             <param name="configureLogging"></param>
             <returns></returns>
         </member>
+        <member name="T:LibraryApi.Presentations.Configs.CorsServiceExtensions">
+            <summary>
+            アプリケーション用の同一オリジンポリシー(CORS設定)を作成する拡張クラス。
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Configs.CorsServiceExtensions.AddAppCors(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            CORSポリシーをサービスコレクションに登録する拡張メソッド
+            appsettings.jsonの「Cors:AllowedOrigins」セクションを読み取り、
+            許可されたオリジンをもとにポリシーを構築する
+            </summary>
+            <param name="services">IServiceCollection(DIコンテナ)</param>
+            <param name="configuration">アプリケーション構成情報</param>
+            <returns>IServiceCollection(メソッドチェーン可能)</returns>
+        </member>
         <member name="T:LibraryApi.Presentations.Configs.SwaggerExtensions">
             <summary>
             Swagger(Open API)のサービス登録を行う拡張クラス
@@ -119,12 +134,6 @@
             </summary>
             <param name="model">ログイン情報ViewModel</param>
             <returns>認証成功時はJWTトークン、失敗時は401</returns>
-        </member>
-        <member name="M:LibraryApi.Presentations.Controllers.AuthenticateController.Logout">
-            <summary>
-            ログアウト(ステートレス: バックエンド側では何もせず204返却)
-            </summary>
-            <returns>常に204 No Content</returns>
         </member>
         <member name="T:LibraryApi.Presentations.Controllers.DeleteBookController">
             <summary>
@@ -226,6 +235,27 @@
             <param name="model">図書変更用ViewModel</param>
             <param name="bookId">変更対象の図書Id(UUID)</param>
             <returns></returns>
+        </member>
+        <member name="T:LibraryApi.Presentations.Middlewares.ExceptionHandlingMiddleware">
+            <summary>
+            InternalException及び未対応の例外をハンドリングするミドルウェア
+            - 例外をキャッチし、ログにエラーメッセージとスタックトレースを出力する
+            - クライアントには統一的な JSON レスポンスを返し、内部情報を直接漏らさない
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Middlewares.ExceptionHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{LibraryApi.Presentations.Middlewares.ExceptionHandlingMiddleware})">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="next">次のミドルウェアを実行するためのデリゲート</param>
+            <param name="logger">>ログ出力のためのILoggerインスタンス</param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            ミドルウェア本体
+            - try/catch で次の処理をラップし、例外発生時にキャッチする
+            - InternalException とそれ以外の例外を区別して処理する
+            </summary>
         </member>
         <member name="T:LibraryApi.Presentations.ViewModels.LoginViewModel">
             <summary>

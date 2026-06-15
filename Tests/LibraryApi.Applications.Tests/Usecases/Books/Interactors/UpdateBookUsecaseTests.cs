@@ -77,12 +77,16 @@ public class UpdateBookUsecaseTests
         // スコープドサービスを破棄する
         _scope!.Dispose();
     }
-    [TestMethod("存在する商品名を指定すると例外はスローされない")]
+
+    [TestMethod("存在する商品IDを指定すると例外はスローされない")]
     public async Task ExistsByBookNameAsync_ShouldNotThrow_WhenNameExists()
     {
-        await _usecase!.ExistsByBookNameAsync("リーダブルコード");
-        Assert.IsTrue(true);
+        // 存在する名前なので例外なく完了するはず
+        //関数名がNameになっているが、本来はID
+        await _usecase!.ExistsByBookNameAsync("94399b5c-7223-48c1-aab3-ea62378bdc13");
     }
+
+
     [TestMethod("存在しない商品名を指定するとExistsExceptionがスローされる")]
     public async Task ExistsByBookNameAsync_ShouldThrowExistsException_WhenNameDoesNotExist()
     {
@@ -93,7 +97,7 @@ public class UpdateBookUsecaseTests
         Assert.AreEqual("図書名:94399b5c-7223-48c1-aab3-ea62378bdc00は存在しません。", ex.Message);
     }
 
-[TestMethod("存在する商品を更新できる")]
+    [TestMethod("存在する商品を更新できる")]
     public async Task UpdateAsync_ExistingBook_ShouldUpdateSuccessfully()
     {
         var uuid = "94399b5c-7223-48c1-aab3-ea62378bdc13";

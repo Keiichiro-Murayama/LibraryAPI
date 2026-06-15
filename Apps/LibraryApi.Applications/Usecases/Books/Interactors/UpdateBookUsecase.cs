@@ -32,7 +32,7 @@ public class UpdateBookUsecase : IUpdateBookUsecase
     public async Task ExistsByBookNameAsync(string id)
     {
         // 指定された図書の有無を調べる
-        var result = await _bookRepository.ExistsByIdAsync(id);
+        var result = await _bookRepository.ExistsByNameAsync(id);
         if (result is false) // 図書が既に存在する
         {
             throw new ExistsException($"図書名:{id}は存在しません。");

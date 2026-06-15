@@ -165,7 +165,7 @@ public class UpdateBookControllerTests
         Assert.AreEqual("DOMAIN_RULE_VIOLATION", code);
     }
 
-    [TestMethod("タイトルが未入力でNotFoundを返す")]
+    [TestMethod("タイトルが未入力でBadRequestを返す")]
     public async Task Update_EmptyTitle_Return400BadRequest()
     {
         var uuid = "94399b5c-7223-48c1-aab3-ea62378bdc13";
@@ -177,13 +177,13 @@ public class UpdateBookControllerTests
         };
 
         var response = await _controller!.Updated(viewModel, uuid);
-        var Request = response as NotFoundObjectResult;
+        var Request = response as BadRequestObjectResult;
 
         Assert.IsNotNull(Request);
         var val = Request.Value!;
         var code = (string)val.GetType().GetProperty("code")!.GetValue(val)!;
 
-        Assert.AreEqual("PRODUCT_NOT_FOUND", code);
+        Assert.AreEqual("DOMAIN_RULE_VIOLATION", code);
     }
 
     [TestMethod("タイトルが51文字でBadRequestを返す")]
