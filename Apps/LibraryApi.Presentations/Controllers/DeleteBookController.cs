@@ -34,7 +34,7 @@ public class DeleteBookController : ControllerBase
     /// </summary>
     /// <param name="bookId">削除対象の図書Id(UUID)</param>
     /// <returns></returns>
-    // [Authorize]
+    [Authorize]
     [HttpDelete("{bookId}")]
     [SwaggerOperation(
 Summary = "図書削除",

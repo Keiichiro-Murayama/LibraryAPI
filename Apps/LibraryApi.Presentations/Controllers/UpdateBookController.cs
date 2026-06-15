@@ -37,7 +37,7 @@ public class UpdateBookController : ControllerBase
     /// <param name="model">図書変更用ViewModel</param>
     /// <param name="bookId">変更対象の図書Id(UUID)</param>
     /// <returns></returns>
-    // [Authorize]
+    [Authorize]
     [HttpPut("{bookId}")]
     [SwaggerOperation(
 Summary = "図書変更",
@@ -92,69 +92,5 @@ Description = "図書情報を更新します。図書名の重複や存在し�
         }
     }
 
-        /// <summary>
-//     /// 選択された図書Idで図書を取得する取得する
-//     /// </summary>
-//     /// <param name="bookId">図書Id(UUID)</param>
-//     /// <returns>該当する図書が存在すればOK(200)、存在しなければNotFound(404)</returns>
-//     // [Authorize]
-//     [HttpGet("{bookId}")]
-//     [SwaggerOperation(
-// Summary = "図書の取得",
-// Description = "指定された図書Id(UUID)で図書を取得する"
-// )]
-//     [SwaggerResponse(StatusCodes.Status200OK, "図書が存在する場合", typeof(Book))]
-//     [SwaggerResponse(StatusCodes.Status404NotFound, "指定された図書が存在しない場合")]
-//     public async Task<IActionResult> GetBookById(string bookId)
-//     {
-//         try
-//         {
-//             var book = await _usecase.GetBookByIdAsync(bookId);
-//             return Ok(book);
-//         }
-//         catch (NotFoundException ex)
-//         {
-//             // エラーレスポンスを返却する
-//             return NotFound(new
-//             { code = "PRODUCT_NOT_FOUND", message = ex.Message });
-//         }
-//     }
 
-//     /// <summary>
-//     /// 図書が既に存在するかを検証する
-//     /// </summary>
-//     /// <param name="bookName">検証対象の図書名</param>
-//     /// <returns>
-//     /// 存在しない場合:Ok(200)、存在する場合:Conflict(409) 
-//     /// </returns>
-//     // [Authorize]
-//     [HttpGet("validate")]
-//     [SwaggerOperation(
-// Summary = "図書名の存在確認",
-// Description = "図書名が既に存在するかを検証する"
-// )]
-//     [SwaggerResponse(StatusCodes.Status200OK, "存在しない場合 { exists=false } を返す")]
-//     [SwaggerResponse(StatusCodes.Status400BadRequest, "図書名が未入力の場合")]
-//     [SwaggerResponse(StatusCodes.Status409Conflict, "図書名が既に存在する場合")]
-//     public async Task<IActionResult> ValidateBook([FromQuery] string bookName)
-//     {
-//         // 図書名がnullか空白
-//         if (string.IsNullOrWhiteSpace(bookName))
-//         {
-//             return BadRequest(new
-//             { code = "INVALID_PRODUCT_NAME", message = "図書名は必須です。" });
-//         }
-//         try
-//         {
-//             // 図書名の存在有無を調べる
-//             await _usecase.ExistsByBookNameAsync(bookName);
-//             return Ok(new { exists = false });
-//         }
-//         catch (ExistsException ex)
-//         {
-//             // 図書が既に存在する場合
-//             return Conflict(new
-//             { code = "PRODUCT_ALREADY_EXISTS", message = ex.Message });
-//         }
-//     }
 }

@@ -35,7 +35,7 @@ public class RegisterBookController : ControllerBase
     /// 図書カテゴリ一覧の取得
     /// </summary>
     /// <returns></returns>
-    // [Authorize]
+    [Authorize]
     [HttpGet("/api/categories")]
     [SwaggerOperation(Summary = "図書カテゴリ一覧を取得",
                           Description = "登録可能なすべての図書カテゴリを返します。")]
@@ -51,7 +51,7 @@ public class RegisterBookController : ControllerBase
     /// </summary>
     /// <param name="model">図書登録用ViewModel</param>
     /// <returns></returns>
-    // [Authorize]
+    [Authorize]
     [HttpPost]
     [SwaggerOperation(Summary = "新図書を登録",
               Description = "図書情報を受け取り、図書を登録する")]
@@ -116,66 +116,4 @@ public class RegisterBookController : ControllerBase
         }
     }
 
-    /// <summary>
-    /// 図書が既に存在するかを検証する.
-    /// </summary>
-    /// <param name="productName">検証対象の図書名</param>
-    /// <returns>
-    /// 存在しない場合:Ok(200)、存在する場合:Conflict(409) 
-    /// </returns>
-
-    // [Authorize]
-    // [HttpGet("validate")]
-    // [SwaggerOperation(Summary = "図書名の存在確認",
-    //           Description = "図書名が既に存在するかを検証する")]
-    // [SwaggerResponse(StatusCodes.Status200OK, "存在しない場合 { exists=false } を返す")]
-    // [SwaggerResponse(StatusCodes.Status400BadRequest, "図書名が未入力の場合")]
-    // [SwaggerResponse(StatusCodes.Status409Conflict, "図書名が既に存在する場合")]
-    // public async Task<IActionResult> ValidateBook([FromQuery] string productName)
-    // {
-    //     // 図書名がnullか空白
-    //     if (string.IsNullOrWhiteSpace(productName))
-    //     {
-    //         return BadRequest(new
-    //         { error = "INVALID_PRODUCT_NAME", message = "図書名は必須です。" });
-    //     }
-    //     try
-    //     {
-    //         // 図書名の存在有無を調べる
-    //         await _usecase.ExistsByBookNameAsync(productName);
-    //         return Ok(new { exists = false });
-    //     }
-    //     catch (ExistsException ex)
-    //     {
-    //         // 図書が既に存在する場合
-    //         return Conflict(new
-    //         { error = "PRODUCT_ALREADY_EXISTS", message = ex.Message });
-    //     }
-    // }
-
-    /// <summary>
-    /// 選択された図書カテゴリIdで図書カテゴリを取得する取得する
-    /// </summary>
-    /// <param name="categoryId">図書カテゴリId(UUID)</param>
-    /// <returns>該当するカテゴリが存在すればOK(200)、存在しなければNotFound(404)</returns>
-    // [Authorize]
-    // [HttpGet("categories/{categoryId}")]
-    // [SwaggerOperation(Summary = "図書カテゴリの取得",
-    //               Description = "指定された図書カテゴリIdに一致する図書カテゴリを返します。")]
-    // [SwaggerResponse(StatusCodes.Status200OK, "図書カテゴリが見つかった場合", typeof(BookCategory))]
-    // [SwaggerResponse(StatusCodes.Status404NotFound, "該当図書カテゴリが存在しない場合")]
-    // public async Task<IActionResult> GetCategoryById(string categoryId)
-    // {
-    //     try
-    //     {
-    //         var category = await _usecase.GetCategoryByIdAsync(categoryId);
-    //         return Ok(category);
-    //     }
-    //     catch (NotFoundException ex)
-    //     {
-    //         // エラーレスポンスを返却する
-    //         return NotFound(new
-    //         { error = "CATEGORY_NOT_FOUND", message = ex.Message });
-    //     }
-    // }
 }

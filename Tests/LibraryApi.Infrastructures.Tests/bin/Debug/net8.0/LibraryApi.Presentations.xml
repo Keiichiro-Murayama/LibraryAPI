@@ -70,6 +70,37 @@
             <param name="configureLogging"></param>
             <returns></returns>
         </member>
+        <member name="T:LibraryApi.Presentations.Configs.SwaggerExtensions">
+            <summary>
+            Swagger(Open API)のサービス登録を行う拡張クラス
+            - アノテーション有効化
+            - XML コメントの取り込み
+            - JWT(Bearer)のセキュリティ定義と要件の追加
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Configs.SwaggerExtensions.AddSwaggerWithJwt(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly)">
+            <summary>
+            Swaggerを有効化し、JWT認証をSwaggerUIから利用できるように設定する
+            </summary>
+            <param name="services">サービスコレクション</param>
+            <param name="xmlDocAssembly">
+            XMLドキュメントコメントを取り込む対象のアセンブリ
+            </param>
+            <returns>IServiceCollection(チェーン可能)</returns>
+        </member>
+        <member name="T:LibraryApi.Presentations.Configs.JwtAuthenticationExtensions">
+            <summary>
+            JWT認証のサービス登録を行う拡張クラス
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Configs.JwtAuthenticationExtensions.AddJwtAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            JwtBearerミドルウェアを登録し、TokenValidationParametersとイベントフックを設定する
+            </summary>
+            <param name="services">サービスコレクション</param>
+            <param name="config">構成情報</param>
+            <returns>IServiceCollection(チェーン可能)</returns>
+        </member>
         <member name="T:LibraryApi.Presentations.Controllers.DeleteBookController">
             <summary>
             ユースケース:[図書を削除する]を実現するコントローラ

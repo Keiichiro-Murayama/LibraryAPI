@@ -28,7 +28,7 @@ public class SearchBookByKeywordController : ControllerBase
     /// </summary>
     /// <param name="keyword">検索キーワード</param>
     /// <returns>検索結果の図書一覧</returns>
-    // [Authorize]
+    [Authorize]
     [HttpGet]
     [SwaggerResponse(StatusCodes.Status200OK, "検索に成功した場合、図書リストを返す", typeof(List<Book>))]
     [SwaggerResponse(StatusCodes.Status400BadRequest, "キーワード未入力など、リクエストが不正な場合")]

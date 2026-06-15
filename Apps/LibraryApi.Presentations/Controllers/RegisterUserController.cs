@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryApi.Applications.Usecases.Users.Interfaces;
 using LibraryApi.Domains.Exceptions;
-
 using LibraryApi.Domains.Models;
 using LibraryApi.Presentations.Adapters;
 using LibraryApi.Presentations.ViewModels;

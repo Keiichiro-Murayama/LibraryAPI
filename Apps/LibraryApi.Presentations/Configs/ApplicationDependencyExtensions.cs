@@ -4,7 +4,7 @@ using LibraryApi.Infrastructures.Contexts;
 using LibraryApi.Infrastructures.Adapters;
 using LibraryApi.Infrastructures.Repositories;
 using LibraryApi.Infrastructures.Shared;
-// using LibraryApi.Infrastructures.Security;
+using LibraryApi.Infrastructures.Security;
 using LibraryApi.Domains.Repositories;
 using LibraryApi.Domains.Models;
 using LibraryApi.Applications.Usecases;
@@ -13,7 +13,7 @@ using LibraryApi.Applications.Usecases.Books.Interactors;
 using LibraryApi.Applications.Usecases.Users.Interfaces;
 using LibraryApi.Applications.Usecases.Users.Interactors;
 using LibraryApi.Applications.Usecases.Authenticate.Interfaces;
-// using LibraryApi.Applications.Usecases.Authenticate.Interactors;
+using LibraryApi.Applications.Usecases.Authenticate.Interactors;
 using LibraryApi.Applications.Security;
 using LibraryApi.Presentations.Adapters;
 namespace LibraryApi.Presentations.Configs;
@@ -82,7 +82,7 @@ public static class ApplicationDependencyExtensions
         // ドメインオブジェクト:User(ユーザー)のCRUD操作インターフェイスの実装
         services.AddScoped<IUserRepository, UserRepository>();
         // JWTの発行・検証インターフェイスの実装
-        // services.AddSingleton<IJwtTokenProvider, JwtTokenProvider>();
+        services.AddSingleton<IJwtTokenProvider, JwtTokenProvider>();
 
         return services;
 
@@ -109,9 +109,9 @@ public static class ApplicationDependencyExtensions
         // ユースケース:[ユーザーを登録する]を実現するインターフェイス
         services.AddScoped<IRegisterUserUsecase, RegisterUserUsecase>();
         // JwtSettingsをバインドしてDIに登録する
-        // services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
+        services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
         // ユースケース:[ログインする]を実現するインターフェイス
-        // services.AddScoped<IAuthenticateUserUsecase, AuthenticateUserUsecase>();
+        services.AddScoped<IAuthenticateUserUsecase, AuthenticateUserUsecase>();
         return services;
     }
 
