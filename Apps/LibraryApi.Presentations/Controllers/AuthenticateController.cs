@@ -73,6 +73,13 @@ public class AuthenticateController : ControllerBase
         }
     }
 
+    [HttpPost("logout")]
+    [Authorize]
+    [SwaggerOperation(
+        Summary = "ユーザーのログアウト",
+        Description = "JWTトークンを含むCookieを削除します。")]
+    [SwaggerResponse(StatusCodes.Status204NoContent, "ログアウト成功")]
+    [SwaggerResponse(StatusCodes.Status401Unauthorized, "認証失敗")]
     public IActionResult Logout()
     {
         // Cookie削除時も、発行時と同じオプションを指定する必要がある

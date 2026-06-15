@@ -43,7 +43,9 @@ public static class CorsServiceExtensions
                     // 任意のHTTPヘッダを許可する(例: Content-Type, Authorizationなど）
                     .AllowAnyHeader()
                     // 任意のHTTPメソッド(GET, POST, PUT, DELETE...)を許可する
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    // 認証情報(Cookie, Tokenなど)の送信を許可する
+                    .AllowCredentials();
             });
         });
         return services;
